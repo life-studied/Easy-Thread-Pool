@@ -1,24 +1,4 @@
-# Easy-Thread-Pool
-A easy thread pool based on C++14, which is a **Single-task queue**.
-
-## 1.支持的task类型（Supported task types）
-
-* 普通函数（function name）
-* 匿名函数（lambda）
-* 仿函数（Overloaded `()` class or struct）
-* 类成员函数（Class member functions）
-* `std::function`/`std::packaged_task`
-
-## 2.线程池对外接口
-
-```c++
-std::future<FucReturnType> submitTask(Func &&func,Args...args);
-```
-
-## 3.使用案例
-
-```C++
-#include <iostream>
+﻿#include <iostream>
 #include <chrono>
 #include "ThreadPool.h"
 
@@ -55,6 +35,3 @@ int main()
     std::cout << "End of getting results" << std::endl;
     
 }
-
-```
-
