@@ -9,10 +9,18 @@ A easy thread pool based on C++14, which is a **Single-task queue**.
 * 类成员函数（Class member functions）
 * `std::function`/`std::packaged_task`
 
-## 2.线程池对外接口
+## 2.线程池使用
+
+### 2.1 提交任务
 
 ```c++
-std::future<FucReturnType> submitTask(Func &&func,Args...args);
+std::future<returnType> res = submitTask(funcName, arg1, arg2, ...);
+```
+
+### 2.2 获取结果
+
+```C++
+res.get();
 ```
 
 ## 3.使用案例
