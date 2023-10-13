@@ -26,12 +26,13 @@ void pooltech::ThreadPool::initialize()
 {
 	for (int i = 0;i<m_threads.size();i++)
 	{
-		auto worker = [this, i]() {
+		auto worker = [this]() {
 			while (m_runningStatus)
 			{
 				TaskType task;
 				bool isSuccess = false;
 
+				// 防止虚假唤醒，此处采用加锁的方式解决，笔记中还可使用while检测队空的方式解决
 				{
 					std::unique_lock<std::mutex> lock(m_mtx);
 					if (this->m_taskQueue.empty())

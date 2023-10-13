@@ -11,14 +11,14 @@ int very_time_consuming_task(int a, int b)  //模拟耗时函数
 int main()
 {
     using namespace pooltech;
-    ThreadPool thread_pool{12};
-    int taskNum = 30;
+    ThreadPool thread_pool;
+    int taskNum = 1000;
     std::vector<std::future<int>> results(taskNum);
 
     std::cout << "start to submit tasks..." << std::endl;
     for (size_t i = 0; i < taskNum; i++)
     {
-        results[i] = thread_pool.submitTask(very_time_consuming_task, i, i + 1);
+        results[i] = thread_pool.submitTask<decltype(very_time_consuming_task),int,int>(very_time_consuming_task, i, i + 1);
     }
     std::cout << "End submit tasks..." << std::endl;
     std::cout << "Main thread is doing something else..." << std::endl;
